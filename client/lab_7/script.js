@@ -133,7 +133,7 @@ function  getRandomIntInclusive(min, max){
 
     form.addEventListener('input', (event)=>{
       console.log('input', event.target.value);
-      currentList = filterList(arrayFromJson.data, event.target.value);
+      currentList = filterList(currentList, event.target.value);
       injectHTML(currentList);
     });
   
@@ -145,10 +145,10 @@ function  getRandomIntInclusive(min, max){
   
         // This constant will have the value of your 15-restaurant collection when it processes
         currentList = processRestaurants(arrayFromJson.data);
-        console.log(restaurantList);
+        console.log(currentList);
   
         // And this function call will perform the "side effect" of injecting the HTML list for you
-        injectHTML(restaurantList);
+        injectHTML(currentList);
   
         // By separating the functions, we open the possibility of regenerating the list
         // without having to retrieve fresh data every time
