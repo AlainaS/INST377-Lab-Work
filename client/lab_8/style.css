@@ -1,7 +1,13 @@
-/* 
-    New code bonus: pure CSS data loading icon
-    This comes from loading.io/css - it's nice to show that something is happening!
-*/
+/* Map Styles */
+
+map {
+    display: block;
+    width: 400px;
+    height: 380px;
+    border: 2x dashed rgb(99,99,99);
+    margin-bottom: 1rem;
+  }
+
 
 .lds-ellipsis {
     display: inline-block;
@@ -63,18 +69,11 @@
       transform: translate(24px, 0);
     }
   }
-  /* CSS instructions for Lab 5 */
-  /* Bring in your successful CSS from week 4 */
-  /* In your #map rule, set map to display:none; to temporarily hide your map box */
+
   
   * {
     box-sizing: border-box;
   }
-  
-  /* 
-    These rules apply to actual HTML elements with no labelling!
-    So: they style the tags directly
-  */
   
   html {
     background-color: #fff;
@@ -312,3 +311,5 @@
       align-items: center;
     }
   }
+
+ 
