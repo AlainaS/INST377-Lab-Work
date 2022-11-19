@@ -136,10 +136,6 @@ function  getRandomIntInclusive(min, max){
       const newFilterList = filterList(arrayFromJson.data, event.target.value);
       injectHTML(newFilterList);
     });
-
-    form.addEventListener('', (event)=>{
-      console.log(event.target.value);
-    });
   
       // And here's an eventListener! It's listening for a "submit" button specifically being clicked
       // this is a synchronous event event, because we already did our async request above, and waited for it to resolve
