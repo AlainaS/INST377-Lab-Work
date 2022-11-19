@@ -119,11 +119,9 @@ function  getRandomIntInclusive(min, max){
     // this is called "string interpolation" and is how we build large text blocks with variables
     console.log(`${arrayFromJson.data[0].name} ${arrayFromJson.data[0].category}`);
   
-    // This IF statement ensures we can't do anything if we don't have information yet
-    if (arrayFromJson.data?.length > 0) { // the question mark in this means "if this is set at all"
-      submit.style.display = 'block'; // let's turn the submit button back on by setting it to display as a block when we have data available
-  
-    if (!arrayFromJson.data?.length) {return;}
+    if (!arrayFromJson.data?.length) { return; } // return if no data
+    
+    submit.style.display = 'block';
 
     let currentList = [];
 
@@ -145,7 +143,6 @@ function  getRandomIntInclusive(min, max){
   
         // This constant will have the value of your 15-restaurant collection when it processes
         currentList = processRestaurants(arrayFromJson.data);
-        console.log(filteredList);
   
         // And this function call will perform the "side effect" of injecting the HTML list for you
         injectHTML(currentList);
@@ -163,4 +160,6 @@ function  getRandomIntInclusive(min, max){
     It runs first because the listener is set to when your HTML content has loaded
   */
   document.addEventListener('DOMContentLoaded', async () => mainEvent()); // the async keyword means we can make API requests
+
+  
   
