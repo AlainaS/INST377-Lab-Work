@@ -133,8 +133,8 @@ function  getRandomIntInclusive(min, max){
 
     form.addEventListener('input', (event)=>{
       console.log('input', event.target.value);
-      const newFilterList = filterList(arrayFromJson.data, event.target.value);
-      injectHTML(newFilterList);
+      currentList = filterList(arrayFromJson.data, event.target.value);
+      injectHTML(currentList);
     });
   
       // And here's an eventListener! It's listening for a "submit" button specifically being clicked
@@ -144,7 +144,7 @@ function  getRandomIntInclusive(min, max){
         submitEvent.preventDefault();
   
         // This constant will have the value of your 15-restaurant collection when it processes
-        const restaurantList = processRestaurants(arrayFromJson.data);
+        currentList = processRestaurants(arrayFromJson.data);
         console.log(restaurantList);
   
         // And this function call will perform the "side effect" of injecting the HTML list for you
