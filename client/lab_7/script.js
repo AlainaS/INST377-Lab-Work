@@ -73,13 +73,13 @@ function  getRandomIntInclusive(min, max){
     */
   }
 
-  function filterList(array, filterInputValue){
-    const newArray = array.filter((item) => {
+  function filterList(list, filterInputValue){
+    return list.filter((item) => {
+      if (!item.name) { return; }
       const lowerCaseName = item.name.toLowerCase();
-      const lowerCaseQuery = item.name.toLowerCase();
+      const lowerCaseQuery = filterInputValue.toLowerCase();
       return lowerCaseName.includes(lowerCaseQuery);
-    })
-    return newArray;
+    });
   }
   
   async function mainEvent() {
@@ -131,9 +131,9 @@ function  getRandomIntInclusive(min, max){
     loadAnimation.classList.remove('lds-ellipsis');
     loadAnimation.classList.add('lds-ellipsis_hidden');
 
-    form.addEventListener('input', (event)=>{
+    form.addEventListener('input', (event) => {
       console.log(event.target.value);
-      filteredList = filterList(filteredList, event.target.value);
+      const filteredList = filterList(filteredList, event.target.value);
       injectHTML(filteredList);
     });
   
