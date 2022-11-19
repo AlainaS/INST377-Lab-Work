@@ -84,7 +84,20 @@ function  getRandomIntInclusive(min, max){
   
   function initMap() {
     console.log('initMap');
-    const map = L.map('map').setView([51.505, -0.09], 13);
+    const map = L.map('map').setView([38.9897, -76.9378], 13);
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+}).addTo(map);
+  return map;
+  }
+
+  function markerPlace(array, map) {
+    console.log('markerPlace');
+    array.forEach(item => {
+        const{coordinates} = item.geocoded_column_1;
+        L.marker([coordinates[1], coordinates[0]].addTo(map));
+    })
   }
 
   async function mainEvent() {
@@ -136,8 +149,9 @@ function  getRandomIntInclusive(min, max){
 
     form.addEventListener('input', (event) => {
       console.log(event.target.value);
-      currentList = filterList(currentList, event.target.value);
-      injectHTML(currentList);
+      const filteredList = filterList(currentList, event.target.value);
+      injectHTML(filteredList);
+      markerPlace(filteredList, pageMap);
     });
   
       // And here's an eventListener! It's listening for a "submit" button specifically being clicked
@@ -151,6 +165,7 @@ function  getRandomIntInclusive(min, max){
   
         // And this function call will perform the "side effect" of injecting the HTML list for you
         injectHTML(currentList);
+        markerPlace(currentList, pageMap);
   
         // By separating the functions, we open the possibility of regenerating the list
         // without having to retrieve fresh data every time
