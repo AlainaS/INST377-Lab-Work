@@ -72,6 +72,15 @@ function  getRandomIntInclusive(min, max){
       - Return the new list of 15 restaurants so we can work on it separately in the HTML injector
     */
   }
+
+  function filterList(array, filterInputValue){
+    const newArray = array.filter((item) => {
+      const lowerCaseName = item.name.toLowerCase();
+      const lowerCaseQuery = item.name.toLowerCase();
+      return lowerCaseName.includes(lowerCaseQuery);
+    })
+    return newArray;
+  }
   
   async function mainEvent() {
     /*
@@ -114,9 +123,23 @@ function  getRandomIntInclusive(min, max){
     if (arrayFromJson.data?.length > 0) { // the question mark in this means "if this is set at all"
       submit.style.display = 'block'; // let's turn the submit button back on by setting it to display as a block when we have data available
   
+    if (!arrayFromJson.data?.length) {return;}
+
+    let currentList = [];
+
       // Hide the load button
     loadAnimation.classList.remove('lds-ellipsis');
     loadAnimation.classList.add('lds-ellipsis_hidden');
+
+    form.addEventListener('input', (event)=>{
+      console.log('input', event.target.value);
+      const newFilterList = filterList(arrayFromJson.data, event.target.value);
+      injectHTML(newFilterList);
+    });
+
+    form.addEventListener('', (event)=>{
+      console.log(event.target.value);
+    });
   
       // And here's an eventListener! It's listening for a "submit" button specifically being clicked
       // this is a synchronous event event, because we already did our async request above, and waited for it to resolve
