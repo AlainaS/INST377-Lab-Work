@@ -93,10 +93,18 @@ function  getRandomIntInclusive(min, max){
   }
 
   function markerPlace(array, map) {
-    console.log('markerPlace');
+    map.eachLayer((layer) => {
+        if (layer instanceof L.Marker){
+            layer.remove();
+        }
+    }); 
+
     array.forEach(item => {
-        const{coordinates} = item.geocoded_column_1;
+        const {coordinates} = item.geocoded_column_1;
         L.marker([coordinates[1], coordinates[0]].addTo(map));
+        if (index ==0) {
+            map.setView[[coordinates[1], coordinates[0], 9]];
+        }
     })
   }
 
