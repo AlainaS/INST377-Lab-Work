@@ -132,9 +132,9 @@ function  getRandomIntInclusive(min, max){
     loadAnimation.classList.add('lds-ellipsis_hidden');
 
     form.addEventListener('input', (event)=>{
-      console.log('input', event.target.value);
-      currentList = filterList(currentList, event.target.value);
-      injectHTML(currentList);
+      console.log(event.target.value);
+      filteredList = filterList(filteredList, event.target.value);
+      injectHTML(filteredList);
     });
   
       // And here's an eventListener! It's listening for a "submit" button specifically being clicked
@@ -145,7 +145,7 @@ function  getRandomIntInclusive(min, max){
   
         // This constant will have the value of your 15-restaurant collection when it processes
         currentList = processRestaurants(arrayFromJson.data);
-        console.log(currentList);
+        console.log(filteredList);
   
         // And this function call will perform the "side effect" of injecting the HTML list for you
         injectHTML(currentList);
